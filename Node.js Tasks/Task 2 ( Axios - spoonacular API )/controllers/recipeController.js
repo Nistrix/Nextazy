@@ -16,8 +16,6 @@ class RecipeController {
 
   static async getAllRecipes(apiKey) {
     try {
-      const BASE_URL = 'https://api.spoonacular.com/recipes';
-
       const response = await axios.get(`${BASE_URL}/complexSearch`, {
         params: {
           apiKey,
@@ -32,7 +30,6 @@ class RecipeController {
 
   static async getSingleRecipe(apiKey, recipeId) {
     try {
-
       const response = await axios.get(`${BASE_URL}/${recipeId}/information`, {
         params: {
           apiKey,
@@ -45,11 +42,8 @@ class RecipeController {
   }
 
 
-
   static async updateRecipe(apiKey, recipeId, data) {
     try {
-      
-
       const response = await axios.put(`${BASE_URL}/${recipeId}`, data, {
         params: {
           apiKey,
@@ -63,8 +57,6 @@ class RecipeController {
 
   static async deleteRecipe(apiKey, recipeId) {
     try {
-      
-
       const response = await axios.delete(`${BASE_URL}/${recipeId}`, {
         params: {
           apiKey,
