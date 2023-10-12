@@ -11,6 +11,9 @@ const client = redis.createClient(REDIS_PORT);
 
 const app = express();
 
+app.use(express.json());
+
+
 function setResponse(username, repos) {
   return `${username} has ${repos} Github Public Repos !!`;
 }
@@ -22,7 +25,9 @@ async function getRepos(req, res, next) {
 
     const { username } = req.params;
 
-    const response = await axios.get(`https://api.github.com/users/${username}`);
+    const response = await axios.get(
+      `https://api.github.com/users/${username}`
+    );
 
     const data = await response.data;
 
@@ -53,7 +58,7 @@ function cache(req, res, next) {
     if (err) throw err;
 
     if (data !== null) {
-      return res.send(setResponse(username, data));
+      res.send(setResponse(username, data));
     } else {
       next();
     }
