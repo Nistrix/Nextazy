@@ -1,0 +1,13 @@
+{
+  "name": "consumer-(-errorandwarningms-)",
+  "version": "1.0.0",
+  "main": "consumer.js",
+  "scripts": {
+    "start": "nodemon consumer.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {},
+  "description": ""
+}
