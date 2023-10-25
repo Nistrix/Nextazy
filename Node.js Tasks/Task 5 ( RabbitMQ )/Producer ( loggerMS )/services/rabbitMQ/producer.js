@@ -33,7 +33,7 @@ class Producer {
 
     console.log(
       `The new ${routingKey} log has been sent to exchange ${exchangeName}.`
-      );
+    );
   }
 }
 
