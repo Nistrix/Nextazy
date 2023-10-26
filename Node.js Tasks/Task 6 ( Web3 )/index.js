@@ -6,7 +6,7 @@ const web3 = new Web3(
 );
 
 // Seeded -- sender's private key and address
-const senderPrivateKey ="";
+const senderPrivateKey ="4654ba7ee53e58c5269b8530dbae1090b5c12ba4be191ebc8775bed4dda16094";
 const senderAddress = "0x641f98b8AF8c3da987274c7F3ac63271516c05Cc";
 
 app.use(express.json());
@@ -34,20 +34,15 @@ app.get("/getBalance", async (req, res) => {
   }
 });
 
-// 5. Getting safe gas price
-async function safeGasPrice() {
-  try {
-    const gasPrice = await web3.eth.getGasPrice();
-    console.log(
-      "Current gas price:",
-      web3.utils.fromWei(gasPrice, "gwei"),
-      "Gwei"
-    );
-    return gasPrice;
-  } catch (error) {
-    console.log(error);
-  }
-}
+
+// async function safeGasPrice() {
+//   try {
+//     const gasPrice = await web3.eth.getGasPrice();
+//     console.log("Current gas price:",web3.utils.fromWei(gasPrice, "gwei"),"Gwei");
+//   } catch (error) {
+//     console.log(error);
+//   }
+// }
 
 // 4. Send a transaction to another address
 app.post("/sendTransaction", async (req, res) => {
@@ -72,8 +67,8 @@ app.post("/sendTransaction", async (req, res) => {
     );
 
     console.log("Transaction receipt:", receipt);
+    res.status(200).json({ receipt });
 
-    res.json({ receipt });
   } catch (error) {
     console.log(error);
 
@@ -85,3 +80,4 @@ app.listen(3000, () => {
   console.log("Web app is running on port 3000");
 });
 
+//safeGasPrice();
