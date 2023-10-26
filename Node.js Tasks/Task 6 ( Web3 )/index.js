@@ -6,7 +6,7 @@ const web3 = new Web3(
 );
 
 // Seeded -- sender's private key and address
-const senderPrivateKey ="4654ba7ee53e58c5269b8530dbae1090b5c12ba4be191ebc8775bed4dda16094";
+const senderPrivateKey ="";
 const senderAddress = "0x641f98b8AF8c3da987274c7F3ac63271516c05Cc";
 
 app.use(express.json());
