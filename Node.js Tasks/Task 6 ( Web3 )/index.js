@@ -28,23 +28,21 @@ app.get('/getBalance', async (req, res) => {
   }
 });
 
-// 6. Get the current gas price
-app.get('/getGasPrice', async (req, res) => {
-  try {
+// 5. Getting safe gas price
+async function safeGasPrice(){
+  try{
     const gasPrice = await web3.eth.getGasPrice();
     console.log("Current gas price:",web3.utils.fromWei(gasPrice, "gwei"),"Gwei");
-    res.json({ gasPrice: web3.utils.fromWei(gasPrice, 'gwei') });
-  } catch (error) {
-    console.log(error);
-    res.status(500).json({ error: 'Unable to fetch gas price' });
-  }
-});
+  }catch(error){
+      console.log(error);
+    }
+}
 
  // 4. Send a transaction to another address
 app.post('/sendTransaction', async (req, res) => {
   try {
     const { receiverAddress, amountInEther } = req.body;
-    const amountToSend = web3.utils.toWei('0.00000001', 'ether');
+    const amountToSend = web3.utils.toWei(amountInEther, 'ether');
 
     const transactionObject = {
       from: senderAddress,
@@ -71,3 +69,5 @@ app.post('/sendTransaction', async (req, res) => {
 app.listen(3000, () => {
   console.log('Web app is running on port 3000');
 });
+
+safeGasPrice();
