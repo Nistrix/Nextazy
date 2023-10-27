@@ -9,18 +9,14 @@ class sampleWeb3 {
   async createAccount(req, res) {
     const account = web3.eth.accounts.create();
     console.log("New Account:", account);
-    res.json({ account });
+    res.status(200).json({ account });
   }
 
   async getBalance(req, res) {
     try {
       const balance = await web3.eth.getBalance(senderAddress);
-      console.log(
-        "Balance of the Account:",
-        web3.utils.fromWei(balance, "ether"),
-        "ETH"
-      );
-      res.json({ balance: web3.utils.fromWei(balance, "ether") });
+      console.log("Balance of the Account:",web3.utils.fromWei(balance, "ether"),"ETH");
+      res.json({ balance: web3.utils.fromWei(balance, "ether")});
     } catch (error) {
       console.log(error);
       res.status(500).json({ error: "Unable to fetch balance" });
